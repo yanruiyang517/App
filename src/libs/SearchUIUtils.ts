@@ -5531,9 +5531,9 @@ function getColumnsToShow({
               [CONST.SEARCH.TABLE_COLUMNS.EXCHANGE_RATE]: false,
               [CONST.SEARCH.TABLE_COLUMNS.REIMBURSABLE]: shouldShowReimbursableColumn,
               [CONST.SEARCH.TABLE_COLUMNS.BILLABLE]: shouldShowBillableColumn,
-              [CONST.SEARCH.TABLE_COLUMNS.TOTAL_AMOUNT]: false,
+              [CONST.SEARCH.TABLE_COLUMNS.TOTAL_AMOUNT]: true,
               [CONST.SEARCH.TABLE_COLUMNS.COMMENTS]: shouldShowCommentsColumn,
-              [CONST.SEARCH.TABLE_COLUMNS.TOTAL]: true,
+              [CONST.SEARCH.TABLE_COLUMNS.TOTAL]: false,
           }
         : {
               [CONST.SEARCH.TABLE_COLUMNS.AVATAR]: true,
@@ -5701,12 +5701,12 @@ function getColumnsToShow({
             if (hasExchangeRate) {
                 columns[CONST.SEARCH.TABLE_COLUMNS.EXCHANGE_RATE] = true;
             }
-            // Expense report view: TOTAL (workspace currency) is always shown; add AMOUNT
-            // (transaction's own currency) when a conversion exists so both are visible.
+            // Expense report view: AMOUNT (transaction's own currency) is shown by default; add TOTAL
+            // (workspace currency) when a conversion exists so both are visible.
             // Search page: show ORIGINAL_AMOUNT column (transaction's original amount).
             if (hasExchangeRate) {
                 if (isExpenseReportView) {
-                    columns[CONST.SEARCH.TABLE_COLUMNS.TOTAL_AMOUNT] = true;
+                    columns[CONST.SEARCH.TABLE_COLUMNS.TOTAL] = true;
                 } else {
                     columns[CONST.SEARCH.TABLE_COLUMNS.ORIGINAL_AMOUNT] = true;
                 }
